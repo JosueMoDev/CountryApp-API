@@ -10,7 +10,7 @@ import { Country } from '../../interfaces/country.interface';
 })
 export class ByCountryComponent {
   searchingByCountryName: string = "";
-  noFoundError: boolean = false;
+  FoundError: boolean = false;
   countries: Country[] = [];
 
 
@@ -18,7 +18,7 @@ export class ByCountryComponent {
   constructor( private countryService : CountryService) { }
 
   search( searchingByCountryName:string) {
-    this.noFoundError = false;
+    this.FoundError = false;
     this.searchingByCountryName = searchingByCountryName;
 
     this.countryService.searchCountry(this.searchingByCountryName)
@@ -29,7 +29,7 @@ export class ByCountryComponent {
           this.countries = contries;
         },
         error: (err) => {
-          this.noFoundError = true;
+          this.FoundError = true;
           this.countries = [];
         }
       })

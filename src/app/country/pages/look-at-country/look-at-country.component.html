@@ -9,7 +9,7 @@
   *ngFor="let country of countries; "
   >
     <div class="col-12">
-      <h1> Country: <strong>{{country.name.common}}</strong></h1>
+      <h1> Country: <strong>{{country.name.common}}{{ country.flag}}</strong></h1>
     </div>
   </div>
  </ng-template>

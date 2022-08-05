@@ -10,16 +10,12 @@ export class CountryService {
 
   private apiUrl: string = 'https://restcountries.com/v3.1';
 
-  get fieldsParams(): any {
-    return new this.fieldsParams().set('fiels', 'name,capital,flag,flags,population,cioc');
-  }
-
   constructor(private http: HttpClient) { }
 
   searchCountry( searchingByCountryName:string): Observable<Country[]> {
 
     const url = `${this.apiUrl}/name/${searchingByCountryName}`;
-    return this.http.get<Country[]>(url, {params:this.fieldsParams});
+    return this.http.get<Country[]>(url);
   }
   searchCapitalCity( searchingByCapitalCity:string): Observable<Country[]> {
 

@@ -11,13 +11,13 @@
 </div>
 <hr>
 
-<div *ngIf="noFoundError" class="alert-danger">
+<div *ngIf="FoundError" class="alert-danger">
   <h6 class="t"><strong>
     Sorry so much, We haven't could found anything about this "{{ searchingByCountryName }}"
   </strong></h6>
 </div>
 
-<div class="row">
+<div class="row"  *ngIf="countries.length>0">
   <div class="col">
     <app-country-table
     [countries]="countries"

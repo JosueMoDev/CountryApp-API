@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { switchMap, tap } from 'rxjs';
 import { CountryService } from '../../services/country.service';
@@ -11,7 +11,7 @@ import { Country } from '../../interfaces/country.interface';
   styleUrls: ['./look-at-country.component.css']
 })
 export class LookAtCountryComponent implements OnInit {
-  countries: Country []=[];
+  @Output() countries: Country []=[];
   constructor(
     private activatedRoute: ActivatedRoute,
     private countryService: CountryService
