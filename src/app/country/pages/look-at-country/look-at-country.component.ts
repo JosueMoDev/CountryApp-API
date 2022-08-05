@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { switchMap, tap } from 'rxjs';
+import { CountryService } from '../../services/country.service';
+import { Country } from '../../interfaces/country.interface';
+
 
 @Component({
   selector: 'app-look-at-country',
@@ -6,10 +11,29 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./look-at-country.component.css']
 })
 export class LookAtCountryComponent implements OnInit {
+  countries: Country []=[];
+  constructor(
+    private activatedRoute: ActivatedRoute,
+    private countryService: CountryService
 
-  constructor() { }
+  ) { }
 
   ngOnInit(): void {
-  }
+    this.activatedRoute.params
+      .pipe(
+        switchMap(({ countryId }) => this.countryService.shownCountry(countryId)),
+        tap(console.log)
+      )
+      .subscribe(country => this.countries = country )
+      };
 
-}
+    // this.activatedRoute.params
+    //   .subscribe(({ countryId }) => {
+    //     console.log(countryId);
+    //     this.countryService.shownCountry(countryId)
+    //       .subscribe(country => {
+    //         console.log(country)
+    //       })
+    //   });
+
+  }

@@ -1,1 +1,25 @@
-<p>by-capital works!</p>
+<h2>Searching by capital city</h2>
+<hr>
+<div class="row">
+  <div class="col">
+    <app-country-search-input
+    (OnEnter)="search($event)"
+    placeholder="Search by Capital City"
+
+    >
+  </app-country-search-input>
+  </div>
+</div>
+<hr>
+
+<div *ngIf="noFoundError" class="alert-danger">
+  <h6 class="t"><strong>
+    Sorry so much, We haven't could found anything about this "{{ searchingByCapitalCity }}"
+  </strong></h6>
+</div>
+
+<div class="row">
+  <div class="col">
+    <app-country-table [countries]="countries"></app-country-table>
+  </div>
+</div>

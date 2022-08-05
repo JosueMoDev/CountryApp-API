@@ -1,1 +1,16 @@
-<p>look-at-country works!</p>
+ <div
+ *ngIf="!countries; else divCountry"
+ class="alert alert-info"
+
+ >Keep waiting please ....</div>
+
+ <ng-template #divCountry>
+  <div class="row"
+  *ngFor="let country of countries; "
+  >
+    <div class="col-12">
+      <h1> Country: <strong>{{country.name.common}}</strong></h1>
+    </div>
+  </div>
+ </ng-template>
+

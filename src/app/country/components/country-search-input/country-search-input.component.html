@@ -1,0 +1,16 @@
+
+<form (ngSubmit)="search()">
+  <input
+    autocomplete="off"
+    class="input-group"
+
+    type="text"
+    name="searchingByCountryName"
+
+
+    [(ngModel)]="searchingByCountryName"
+    (input)="keyDonw()"
+    [placeholder]="placeholder"
+   >
+
+</form>

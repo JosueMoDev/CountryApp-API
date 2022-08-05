@@ -21,7 +21,7 @@ const routes: Routes = [
     component:ByRegionComponent
   },
   {
-    path: 'contry/:name',
+    path: 'alpha/:countryId',
     component:LookAtCountryComponent
   },
   {

@@ -2,38 +2,25 @@
 <hr>
 <div class="row">
   <div class="col">
-    <form (ngSubmit)="search()">
-      <input
-        autocomplete="off"
-        class="input-group"
-
-        type="text"
-        name="searchingValue"
-        placeholder="Search by country ..."
-
-        [(ngModel)]="searchingByCountryName"
-       >
-
-    </form>
+    <app-country-search-input
+    (OnEnter)="search($event)"
+    placeholder="Search by Country"
+    >
+    </app-country-search-input>
   </div>
 </div>
 <hr>
-<div class="alert-danger">
+
+<div *ngIf="noFoundError" class="alert-danger">
   <h6 class="t"><strong>
-    Sorry so much, We haven't could found anything about this "ABSMSMSMS"
+    Sorry so much, We haven't could found anything about this "{{ searchingByCountryName }}"
   </strong></h6>
 </div>
+
 <div class="row">
   <div class="col">
-    <table class="table table-hover">
-      <thead>
-        <tr>
-          <th>#</th>
-          <th>Flag</th>
-          <th>Name</th>
-          <th>Population</th>
-        </tr>
-      </thead>
-    </table>
+    <app-country-table
+    [countries]="countries"
+    ></app-country-table>
   </div>
 </div>
