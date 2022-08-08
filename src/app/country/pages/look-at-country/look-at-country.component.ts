@@ -21,8 +21,7 @@ export class LookAtCountryComponent implements OnInit {
   ngOnInit(): void {
     this.activatedRoute.params
       .pipe(
-        switchMap(({ countryId }) => this.countryService.shownCountry(countryId)),
-        tap(console.log)
+        switchMap(({ countryId }) => this.countryService.shownCountry(countryId))
       )
       .subscribe(country => this.countries = country )
       };

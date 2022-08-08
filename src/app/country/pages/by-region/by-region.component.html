@@ -1,25 +1,27 @@
-<h3> Search by <strong>{{activatedRegion | titlecase}}</strong> region </h3>
-<hr>
-<h5>select a region</h5>
-<div class="row">
-  <div class="col">
-    <button
-    *ngFor=" let region of regions "
-    [class]="setRegionClass(region)"
-    (click)="setRegion(region)"
+<div class="animate__animated animate__fadeIn animated__faster">
+  <h3> Search by <strong>{{activatedRegion | titlecase}}</strong> region </h3>
+  <hr>
+  <h5>select a region</h5>
+  <div class="row">
+    <div class="col">
+      <button
+      *ngFor=" let region of regions "
+      [class]="setRegionClass(region)"
+      (click)="setRegion(region)"
+      >
+      {{ region }}
+      </button>
+
+    </div>
+
+    <div class="row"
+    *ngIf="countries.length>0"
     >
-    {{ region }}
-    </button>
+      <hr>
+      <app-country-table
+      [countries]="countries"
+      ></app-country-table>
 
-  </div>
-
-  <div class="row"
-  *ngIf="countries.length>0"
-  >
-    <hr>
-    <app-country-table
-    [countries]="countries"
-    ></app-country-table>
-
+    </div>
   </div>
 </div>

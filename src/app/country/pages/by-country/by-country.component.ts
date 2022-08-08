@@ -9,9 +9,10 @@ import { Country } from '../../interfaces/country.interface';
   styleUrls: ['./by-country.component.css']
 })
 export class ByCountryComponent {
-  searchingByCountryName: string = "";
+  searchingByCountryName: string = '';
   FoundError: boolean = false;
   countries: Country[] = [];
+  countriesSuggested: Country[] = [];
 
 
 
@@ -34,6 +35,26 @@ export class ByCountryComponent {
         }
       })
   }
+
+  suggestion(searchingByCountryName:string) {
+    this.FoundError = false
+    this.searchingByCountryName = searchingByCountryName;
+
+    this.countryService.searchCountry(searchingByCountryName)
+    .subscribe({
+      next: (contries) => {
+        this.countriesSuggested = contries.slice(0,5)
+      },
+      error: (err) => {
+
+        this.countriesSuggested = [];
+      }
+    })
+  }
+  searchSuggested(searchingByCountryName :string) {
+    this.search(searchingByCountryName);
+  }
+
 
 
 }

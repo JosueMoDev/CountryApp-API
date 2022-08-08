@@ -20,9 +20,18 @@ export class CountrySearchInputComponent implements OnInit {
 
   searchingByCountryName: string = ''
 
+  ngOnInit() {
+    this.debouncer
+      .pipe(debounceTime(300))
+      .subscribe(value => {
+        this.OnDebounce.emit(value)
+      });
+  }
   search() {
     this.OnEnter.emit(this.searchingByCountryName);
   }
+
+
 
   keyDonw() {
 
@@ -30,12 +39,5 @@ export class CountrySearchInputComponent implements OnInit {
    }
 
 
-  ngOnInit() {
-    this.debouncer
-      .pipe(debounceTime(300))
-      .subscribe(value => {
-        console.log('debouncer:', value)
-      });
-  }
 
 }

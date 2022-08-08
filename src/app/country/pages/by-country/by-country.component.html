@@ -1,15 +1,39 @@
-<h2>Searching by country</h2>
-<hr>
-<div class="row">
-  <div class="col">
-    <app-country-search-input
-    (OnEnter)="search($event)"
-    placeholder="Search by Country"
-    >
-    </app-country-search-input>
+<div class="animate__animated animate__fadeIn animated__faster">
+
+  <h2>Searching by country</h2>
+  <hr>
+  <div class="row">
+    <div class="col">
+      <app-country-search-input
+      (OnEnter)="search($event)"
+      (OnDebounce)="suggestion($event)"
+      placeholder="Search by Country"
+
+      >
+      </app-country-search-input>
+    </div>
   </div>
+
+  <ul class="list-group" >
+    <li *ngFor="let country of countriesSuggested"
+    class="list-group-item list-group-item-action">
+    <a class="nav-link"
+    [routerLink]="['/alpha', country.cioc]"
+    >
+      {{ country.name.common }}
+    </a>
+    </li>
+    <li *ngIf="searchingByCountryName" class="list-group-item list-group-item-action"
+    (click)="searchSuggested( searchingByCountryName )">
+    <a class="nav-link">
+        Search "{{ searchingByCountryName}}"
+    </a>
+</li>
+  </ul>
+
+  <hr>
+
 </div>
-<hr>
 
 <div *ngIf="FoundError" class="alert-danger">
   <h6 class="t"><strong>
